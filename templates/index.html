@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Price Prediction</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://psgroup.in/blog/wp-content/uploads/2020/11/banner-1.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .navbar {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: orange;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            color: #fff;
+        }
+        .navbar-brand:hover {
+            color: #ddd;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding-top: 70px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 90px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            background-color: orange;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        #result {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #result p {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        #result img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Real Estate Predictor</a>
+    </nav>
+
+    <div class="container">
+        <h1>Real Estate Price Prediction for Pune City</h1>
+
+        <form id="pricePredictionForm">
+            <div class="form-group">
+            <label for="area">Location</label>
+            <select name="location" class="form-control" id="location">
+                <option value="Select Park">Select</option>
+                <option value="Koregaon Park">Koregaon Park</option>
+                <option value="Baner">Baner</option>
+                <option value="Kothrud">Kothrud</option>
+                <option value="Wakad">Wakad</option>
+                <option value="Hadapsar">Hadapsar</option>
+                <option value="Hinjewadi">Hinjewadi</option>
+                <option value="Viman Nagar">Viman Nagar</option>
+                <option value="Shivaji Nagar">Shivaji Nagar</option>
+                <option value="Pimple Saudagar">Pimple Saudagar</option>
+                <option value="Aundh">Aundh</option>
+                <option value="Katraj">Katraj</option>
+                <option value="Bavdhan">Bavdhan</option>
+                <option value="Bibwewadi">Bibwewadi</option>
+                <option value="Warje">Warje</option>
+                <option value="Sinhagad Road">Sinhagad Road</option>
+                <option value="Deccan Gymkhana">Deccan Gymkhana</option>
+                <option value="Karve Nagar">Karve Nagar</option>
+                <option value="Pashan">Pashan</option>
+                <option value="Kondhwa">Kondhwa</option>
+                <option value="Vadgaon Budruk">Vadgaon Budruk</option>
+                <option value="Dhankawadi">Dhankawadi</option>
+                <option value="Nigdi">Nigdi</option>
+                <option value="Balewadi">Balewadi</option>
+                <option value="Kharadi">Kharadi</option>
+                <option value="Wagholi">Wagholi</option>
+                <option value="Yerawada">Yerawada</option>
+                <option value="Swargate">Swargate</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="area">Area (in sq. ft.)</label>
+                <input type="number" class="form-control" id="area" name="area" required>
+            </div>
+            <div class="form-group">
+                <label for="bedrooms">Number of Bedrooms</label>
+                <input type="number" class="form-control" id="bedrooms" name="bedrooms" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input type="number" class="form-control" id="year" name="year" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict Price</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <div class="footer">
+        <p>Case Study By Nikit, Krushna & Akshay</p>
+    </div>
+
+    <script>
+        document.getElementById('pricePredictionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.error) {
+                    document.getElementById('result').innerHTML = `<p>Error: ${data.error}</p>`;
+                } else {
+                    document.getElementById('result').innerHTML = `
+                        <p>Location: ${data.location}</p>
+                        <p>Predicted Price: ₹${data.prediction.toFixed(2)}</p>
+                        <p>Price per sq. ft. in ${formData.get('year')}: ₹${data.price_per_sqft.toFixed(2)}</p>
+                        <img src="${data.plot}" alt="Prediction Plot">
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = `<p>An error occurred while processing your request.</p>`;
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.7.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
